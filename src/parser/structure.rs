@@ -6,7 +6,7 @@ use nom::{
 
 use super::body::parse_c_style_body;
 
-pub fn parse_golang_style_structure_name(input: &str) -> IResult<&str, &str> {
+fn parse_golang_style_structure_name(input: &str) -> IResult<&str, &str> {
     delimited(tag("type "), take_until(" struct"), take_until("{"))(input)
 }
 
