@@ -1,8 +1,4 @@
-use nom::{
-    bytes::complete::{tag, take_until},
-    sequence::{delimited, tuple},
-    IResult,
-};
+use nom::{sequence::tuple, IResult};
 
 use super::{comment, function};
 
