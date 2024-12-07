@@ -1,9 +1,9 @@
 use nom::{
-    bytes::complete::tag, character::complete::not_line_ending, sequence::preceded, IResult,
+    bytes::complete::tag, character::complete::not_line_ending, sequence::delimited, IResult,
 };
 
 pub fn parse_c_style_comment(input: &str) -> IResult<&str, &str> {
-    preceded(tag("// "), not_line_ending)(input)
+    delimited(tag("// "), not_line_ending, tag("\n"))(input)
 }
 
 #[cfg(test)]
@@ -12,7 +12,7 @@ mod tests {
 
     #[test]
     fn test_parse_c_style_comment() {
-        let input = "// this is a comment";
+        let input = "// this is a comment\n";
         let expected = "this is a comment";
         assert_eq!(parse_c_style_comment(input).unwrap().1, expected);
     }
