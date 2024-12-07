@@ -5,7 +5,9 @@ use nom::{
     IResult,
 };
 
-pub fn parse_c_style_body(input: &str) -> IResult<&str, &str> {
+use crate::types::body::Body;
+
+pub fn parse_c_style_body(input: &str) -> IResult<&str, Body> {
     delimited(char('{'), take_until("\n}"), pair(newline, char('}')))(input)
 }
 

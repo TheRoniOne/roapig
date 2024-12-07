@@ -2,7 +2,9 @@ use nom::{
     bytes::complete::tag, character::complete::not_line_ending, sequence::delimited, IResult,
 };
 
-pub fn parse_c_style_comment(input: &str) -> IResult<&str, &str> {
+use crate::types::comment::Comment;
+
+pub fn parse_c_style_comment(input: &str) -> IResult<&str, Comment> {
     delimited(tag("// "), not_line_ending, tag("\n"))(input)
 }
 

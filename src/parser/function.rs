@@ -4,13 +4,15 @@ use nom::{
     IResult,
 };
 
+use crate::types::function::{Function, FunctionName};
+
 use super::body::parse_c_style_body;
 
-fn parse_golang_style_function_name(input: &str) -> IResult<&str, &str> {
+fn parse_golang_style_function_name(input: &str) -> IResult<&str, FunctionName> {
     delimited(tag("func "), take_until("("), take_until("{"))(input)
 }
 
-pub fn parse_golang_style_function(input: &str) -> IResult<&str, (&str, &str)> {
+pub fn parse_golang_style_function(input: &str) -> IResult<&str, Function> {
     tuple((parse_golang_style_function_name, parse_c_style_body))(input)
 }
 

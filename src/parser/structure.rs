@@ -4,13 +4,15 @@ use nom::{
     IResult,
 };
 
+use crate::types::structure::{Structure, StructureName};
+
 use super::body::parse_c_style_body;
 
-fn parse_golang_style_structure_name(input: &str) -> IResult<&str, &str> {
+fn parse_golang_style_structure_name(input: &str) -> IResult<&str, StructureName> {
     delimited(tag("type "), take_until(" struct"), take_until("{"))(input)
 }
 
-pub fn parse_golang_style_structure(input: &str) -> IResult<&str, (&str, &str)> {
+pub fn parse_golang_style_structure(input: &str) -> IResult<&str, Structure> {
     tuple((parse_golang_style_structure_name, parse_c_style_body))(input)
 }
 
