@@ -1,13 +1,12 @@
 use nom::{
-    bytes::complete::{tag, take_until},
-    character::complete::{char, newline, not_line_ending},
-    multi::{many0, many1},
-    sequence::{delimited, pair, preceded},
+    bytes::complete::take_until,
+    character::complete::{char, newline},
+    sequence::{delimited, pair},
     IResult,
 };
 
 pub fn parse_c_style_body(input: &str) -> IResult<&str, &str> {
-    delimited(tag("{"), take_until("\n}"), pair(newline, char('}')))(input)
+    delimited(char('{'), take_until("\n}"), pair(newline, char('}')))(input)
 }
 
 #[cfg(test)]
