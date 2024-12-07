@@ -13,3 +13,4 @@ name = "roapig"
 
 [dependencies]
 nom = "7.1.3"
+walkdir = "2.5.0"
