@@ -1,3 +1,7 @@
 use super::{comment::Comment, function::Function};
 
-pub type Router<'a, 'b> = (Comment<'a>, Function<'b>);
+#[derive(Debug, PartialEq)]
+pub struct Router<'a, 'b> {
+    pub comment: Comment<'a>,
+    pub function: Function<'b>,
+}
