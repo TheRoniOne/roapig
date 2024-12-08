@@ -1,7 +1,7 @@
-use super::{comment::Comment, function::Function};
+use super::function::Function;
 
 #[derive(Debug, PartialEq)]
-pub struct Router<'a, 'b> {
-    pub comment: Comment<'a>,
-    pub function: Function<'b>,
+pub struct Router<'a> {
+    pub comment: &'a str,
+    pub function: Function<'a>,
 }
