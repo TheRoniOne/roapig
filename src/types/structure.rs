@@ -1,4 +1,7 @@
 use super::body::Body;
 
-pub type StructureName<'a> = &'a str;
-pub type Structure<'a> = (StructureName<'a>, Body<'a>);
+#[derive(Debug, PartialEq)]
+pub struct Structure<'a> {
+    pub name: &'a str,
+    pub body: Body<'a>,
+}
